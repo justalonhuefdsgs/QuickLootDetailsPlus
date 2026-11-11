@@ -1,8 +1,51 @@
 # QuickLootDetailsPlus
 
+Corresponding source packages for **QuickLoot Details Plus**.
+
+## Latest source: 1.0.1
+
+[QuickLootDetailsPlus-1.0.1source.zip](./QuickLootDetailsPlus-1.0.1source.zip?raw=true)
+
+Extract this source ZIP before following the build instructions.
+
+SHA-256:
+```text
+1399c9fb999e94898ea37a0144be1ea680a38bba608762f091bff7d24db4076a  QuickLootDetailsPlus-1.0.1source.zip
+```
+
+### Native build for 1.0.1
+
+Use Windows with an existing Visual Studio C++ toolchain and the tools required by the documentation inside the archive. From the extracted archive directory, run these steps in order:
+
+```powershell
+python .\reconstruct-dependencies.py
+python .\SourceRoot\tools\prepare_deps.py
+python .\SourceRoot\tools\source_manifest.py --root .\SourceRoot --check
+.\build-release-embedded.ps1 -BuildRoot .\build-release -UiSwf .\Editable-reference\Interface\QuickLootDetails.swf -IconSwf .\Editable-reference\Interface\QuickLootDetails_CategoryIcons.swf
+```
+
+The reconstruction step must run before dependency preparation. It recreates the historical dependency ZIPs from the included expanded files and verifies their original hashes. A different Python/zlib version may fail to recreate identical ZIP bytes; do not bypass a hash mismatch. Do **not** pass `-Diagnostics` or `-ExitDiagnostics` for the release build. Read the source-package and build documentation included in the archive for tool requirements, Papyrus, UI regeneration, and external imports.
+
+### Verification scope for 1.0.1
+
+The release label is 1.0.1; the DLL's internal version remains 0.1.20.0.
+
+Runtime testing was performed with:
+
+- Skyrim 1.5.97 and QuickLoot IE 4.1.2.
+- Skyrim 1.6.1170 and QuickLoot IE 4.1.3.
+
+The Skyrim 1.5.97 / QuickLoot IE 4.1.2 test was completed after the source-package README was written. The tested DLL and SWF hashes matched the 1.0.1 candidate, and all three user-observed checks were reported as passing. This newer result supplements the testing scope recorded inside the unchanged archive.
+
+Other Skyrim or provider versions and controller operation remain unverified. A clean rebuild from the distributed source package has not been verified. The source archive hash does not establish a clean-room or byte-for-byte reproducible build.
+
+## Previous source: 1.0.0
+
+The 1.0.0 archive and its original verification details are retained below.
+
 Corresponding source package for **QuickLoot Details Plus 1.0.0**.
 
-## Download the source
+### Download the source
 
 [QuickLootDetailsPlus-1.0.0-source.zip](./QuickLootDetailsPlus-1.0.0-source.zip?raw=true)
 
@@ -13,7 +56,7 @@ SHA-256:
 53b451a6ae3e9359cb9a378fb93e10d08654447ee0f81a5e4bf756588806bf53  QuickLootDetailsPlus-1.0.0-source.zip
 ```
 
-## Release correspondence
+### Release correspondence
 
 The archive's `RELEASE_MANIFEST.json` matches the manifest in the runtime package `QuickLootDetailsPlus-1.0.0.zip`. All 11 listed runtime files and all 232 source-manifest entries were checked.
 
@@ -23,7 +66,7 @@ The archive's `RELEASE_MANIFEST.json` matches the manifest in the runtime packag
 
 This release uses background opacity 0.70, with exit diagnostics and diagnostic logging disabled. Hash correspondence does not establish a clean-room or byte-for-byte reproducible build, and this source publication adds no new game-runtime validation.
 
-## Native build
+### Native build
 
 Use Windows with the existing Visual Studio C++ toolchain and required tools. The recorded defaults are MSVC 14.43.34808 and Windows SDK 10.0.26100.0. CMake, Ninja, Python, and the test tools documented in the archive are also required.
 
@@ -40,7 +83,7 @@ Read `SOURCE_PACKAGE_README.txt` first. For Papyrus, UI regeneration, external i
 
 Skyrim, provider binaries, external SDKs, and proprietary game imports are not supplied.
 
-## Licensing and notices
+### Licensing and notices
 
 The archive preserves the existing terms without adding a new license grant.
 

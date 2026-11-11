@@ -2,6 +2,37 @@
 
 Corresponding source packages for **QuickLoot Details Plus**.
 
+## Optional ESL source: 1.0.1
+
+[QuickLootDetailsPlus-1.0.1-ESL-source.zip](./QuickLootDetailsPlus-1.0.1-ESL-source.zip?raw=true)
+
+This is the corresponding source for the optional ESL-flagged 1.0.1 package. It preserves all 3,625 entries of the regular 1.0.1 source archive and adds `ESL_VARIANT/` with the flag-only conversion script, tested ESP reference, and variant documentation. It is source code, not a mod-manager installation package.
+
+SHA-256:
+```text
+4dbc2ccd7cd75356dd7b9af27f3bb718f906988cbf4305697e3e9baaeec735b3  QuickLootDetailsPlus-1.0.1-ESL-source.zip
+```
+
+### ESL conversion and build
+
+Follow the regular 1.0.1 build instructions below and read `ESL_VARIANT/README.txt`. From the extracted source archive directory, generate the ESL ESP with:
+
+```powershell
+python .\ESL_VARIANT\apply-esl-flag.py .\Editable-reference\QuickLootDetails.esp .\QuickLootDetails.esp
+```
+
+The output file must not already exist. The script validates the exact input and output hashes and writes a separate file without changing the original. Use the resulting `QuickLootDetails.esp` in the packaged Data root after the regular build/package steps. The tested result is also included in `ESL_VARIANT/Reference/`.
+
+Only the ESL flag changes. The filename, FormIDs and SEQ data are preserved; no FormID compaction or renumbering was performed. The DLL, scripts, UI and configuration files are unchanged from regular 1.0.1. The original source manifest remains unchanged. The conversion was checked against the tested ESP; no new clean rebuild or byte-for-byte build reproducibility is claimed.
+
+### ESL testing and installation cautions
+
+New-save tests passed on Skyrim 1.5.97 and 1.6.1170 for MCM, QuickLoot and world detail cards, settings changes, and save/reload. Migration from the regular ESP was confirmed on 1.5.97 only. Migration on 1.6.1170 and other versions, controller operation, long play sessions and every save/load-order or provider combination remain unverified.
+
+The runtime is an optional alternative to regular 1.0.1, not a required update or a 1.0.2 release. Use only one QLDP runtime package at a time. Back up saves and the mod-manager profile before switching, retain a pre-switch save, and save to a new slot. To roll back, restore the regular package and load the pre-switch save. New games are recommended; there is no need to switch an existing working regular installation. Do not rename the plugin or compact its FormIDs.
+
+The existing licensing and third-party notices remain applicable. See the source archive and the licensing section below.
+
 ## Latest source: 1.0.1
 
 [QuickLootDetailsPlus-1.0.1source.zip](./QuickLootDetailsPlus-1.0.1source.zip?raw=true)
